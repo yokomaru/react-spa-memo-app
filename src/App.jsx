@@ -1,42 +1,6 @@
 import { useState } from "react";
 import "./App.css";
 
-function MemoTextArea({
-  memo,
-  text,
-  setText,
-  memos,
-  handleUpdateButtonClick,
-  handleDeleteButtonClick,
-}) {
-  console.log(memo);
-  return (
-    <div>
-      <textarea
-        name="memoContent"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        rows={4}
-        cols={40}
-      />
-      <button
-        onClick={() => {
-          handleUpdateButtonClick(memo, text);
-        }}
-      >
-        更新
-      </button>
-      <button
-        onClick={() => {
-          handleDeleteButtonClick(memos, memo);
-        }}
-      >
-        削除
-      </button>
-    </div>
-  );
-}
-
 function Memo({ memo, handleMemoClick }) {
   return (
     <button
@@ -72,6 +36,23 @@ function MemoIndex({ memos, handleMemoClick, handleAddButtonClick }) {
   );
 }
 
+function MemoTextArea({
+  text,
+  setText,
+}) {
+  return (
+    <div>
+      <textarea
+        name="memoContent"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        rows={4}
+        cols={40}
+      />
+    </div>
+  );
+}
+
 function MemoEditor({
   memo,
   text,
@@ -83,13 +64,25 @@ function MemoEditor({
   return (
     <section>
       <MemoTextArea
-        memo={memo}
         text={text}
         setText={setText}
-        memos={memos}
-        handleUpdateButtonClick={handleUpdateButtonClick}
-        handleDeleteButtonClick={handleDeleteButtonClick}
       />
+      <div>
+        <button
+          onClick={() => {
+            handleUpdateButtonClick(memo, text);
+          }}
+        >
+          更新
+        </button>
+        <button
+          onClick={() => {
+            handleDeleteButtonClick(memos, memo);
+          }}
+        >
+          削除
+        </button>
+      </div>
     </section>
   );
 }
