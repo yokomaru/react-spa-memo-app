@@ -18,7 +18,7 @@ export default function MemoApps() {
   function handleAddButtonClick(memos) {
     const nextMemo = { id: nextId++, title: "新規メモ", content: "" };
     setMemos([...memos, nextMemo]);
-    selectMemo(nextMemo);
+    setText(nextMemo.content);
   }
 
   function handleUpdateButtonClick(editingMemoID, text) {
@@ -32,28 +32,46 @@ export default function MemoApps() {
         }
       }),
     );
-    selectMemo(updatedMemo);
+    setText(updatedMemo.content);
   }
 
   function handleDeleteButtonClick(memos, editingMemoID) {
     setMemos(memos.filter((m) => m.id !== editingMemoID));
+    setEditingMemoID();
   }
 
-  return (
-    <section>
-      <MemoIndex
-        memos={memos}
-        selectMemo={selectMemo}
-        handleAddButtonClick={handleAddButtonClick}
-      />
-      <MemoEditor
-        editingMemoID={editingMemoID}
-        text={text}
-        setText={setText}
-        memos={memos}
-        handleUpdateButtonClick={handleUpdateButtonClick}
-        handleDeleteButtonClick={handleDeleteButtonClick}
-      />
-    </section>
-  );
+  console.log(editingMemoID)
+  if (editingMemoID == null) {
+    return (
+      <section>
+        <MemoIndex
+          memos={memos}
+          selectMemo={selectMemo}
+          handleAddButtonClick={handleAddButtonClick}
+        />
+      </section>
+    )
+  }else{
+    return (
+      <>
+      <section>
+        <MemoIndex
+          memos={memos}
+          selectMemo={selectMemo}
+          handleAddButtonClick={handleAddButtonClick}
+        />
+      </section>
+      <section>
+        <MemoEditor
+          editingMemoID={editingMemoID}
+          text={text}
+          setText={setText}
+          memos={memos}
+          handleUpdateButtonClick={handleUpdateButtonClick}
+          handleDeleteButtonClick={handleDeleteButtonClick}
+        />
+      </section>
+      </>
+    )
+  }
 }
