@@ -4,7 +4,6 @@ export default function MemoEditor({
   editingMemoID,
   text,
   setText,
-  memos,
   handleUpdateButtonClick,
   handleDeleteButtonClick,
 }) {
@@ -24,7 +23,7 @@ export default function MemoEditor({
         </button>
         <button
           onClick={() => {
-            handleDeleteButtonClick(memos, editingMemoID);
+            handleDeleteButtonClick(editingMemoID);
           }}
         >
           削除

@@ -13,7 +13,7 @@ export default function MemoIndex({ memos, selectMemo, handleAddButtonClick }) {
       <div>
         <button
           onClick={() => {
-            handleAddButtonClick(memos);
+            handleAddButtonClick();
           }}
         >
           +

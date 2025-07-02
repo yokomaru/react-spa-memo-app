@@ -2,11 +2,13 @@ import { useState } from "react";
 import "./App.css";
 import MemoIndex from './components/MemoIndex.jsx';
 import MemoEditor from './components/MemoEditor.jsx';
+import { useReducer } from 'react';
+import memosReducer from './reducers/memosReducer.js';
 
 let nextId = 0;
 
 export default function MemoApps() {
-  const [memos, setMemos] = useState([]);
+  const [memos, dispatch] = useReducer(memosReducer,[]);
   const [editingMemoID, setEditingMemoID] = useState();
   const [text, setText] = useState();
 
@@ -15,32 +17,31 @@ export default function MemoApps() {
     setText(memo.content);
   }
 
-  function handleAddButtonClick(memos) {
+  function handleAddButtonClick() {
     const nextMemo = { id: nextId++, title: "新規メモ", content: "" };
-    setMemos([...memos, nextMemo]);
+    dispatch({
+      type: 'added',
+      ...nextMemo
+    });
     setText(nextMemo.content);
   }
 
   function handleUpdateButtonClick(editingMemoID, text) {
     const updatedMemo = { id: editingMemoID, title: text.split("\n")[0], content: text };
-    setMemos(
-      memos.map((m) => {
-        if (m.id === editingMemoID) {
-          return updatedMemo;
-        } else {
-          return m;
-        }
-      }),
-    );
-    setText(updatedMemo.content);
+    dispatch({
+      type: 'changed',
+      memo: updatedMemo,
+    });
   }
 
-  function handleDeleteButtonClick(memos, editingMemoID) {
-    setMemos(memos.filter((m) => m.id !== editingMemoID));
+  function handleDeleteButtonClick(editingMemoID) {
+      dispatch({
+        type: 'deleted',
+        id: editingMemoID,
+      });
     setEditingMemoID();
   }
 
-  console.log(editingMemoID)
   if (editingMemoID == null) {
     return (
       <section>
