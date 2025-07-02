@@ -10,7 +10,7 @@ export default function MemoApps() {
   const [editingMemoID, setEditingMemoID] = useState();
   const [text, setText] = useState();
 
-  function handleMemoClick(memo) {
+  function selectMemo(memo) {
     setEditingMemoID(memo.id);
     setText(memo.content);
   }
@@ -18,7 +18,7 @@ export default function MemoApps() {
   function handleAddButtonClick(memos) {
     const nextMemo = { id: nextId++, title: "新規メモ", content: "" };
     setMemos([...memos, nextMemo]);
-    handleMemoClick(nextMemo);
+    selectMemo(nextMemo);
   }
 
   function handleUpdateButtonClick(editingMemoID, text) {
@@ -32,7 +32,7 @@ export default function MemoApps() {
         }
       }),
     );
-    handleMemoClick(updatedMemo);
+    selectMemo(updatedMemo);
   }
 
   function handleDeleteButtonClick(memos, editingMemoID) {
@@ -43,7 +43,7 @@ export default function MemoApps() {
     <section>
       <MemoIndex
         memos={memos}
-        handleMemoClick={handleMemoClick}
+        selectMemo={selectMemo}
         handleAddButtonClick={handleAddButtonClick}
       />
       <MemoEditor

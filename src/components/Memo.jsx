@@ -1,8 +1,8 @@
-export default function Memo({ memo, handleMemoClick }) {
+export default function Memo({ memo, selectMemo }) {
   return (
     <button
       onClick={() => {
-        handleMemoClick(memo);
+        selectMemo(memo);
       }}
     >
       {memo.title}
