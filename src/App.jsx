@@ -87,31 +87,12 @@ function MemoEditor({
   );
 }
 
-let nextId = 3;
-
-const MEMOS = [
-  {
-    id: 0,
-    title: "メモ1",
-    content: "メモ1\nメモ1の内容\nメモ1の内容\nメモ1の内容",
-  },
-  {
-    id: 1,
-    title: "メモ2",
-    content: "メモ2\nメモ2の内容\nメモ2の内容\nメモ2の内容",
-  },
-  {
-    id: 2,
-    title: "メモ3",
-    content: "メモ3\nメモ3の内容\nメモ3の内容\nメモ3の内容",
-  },
-];
+let nextId = 0;
 
 export default function MemoApps() {
-  const [memos, setMemos] = useState(MEMOS);
-  const [editingMemoID, setEditingMemoID] = useState(MEMOS[0].id);
-  const [text, setText] = useState(MEMOS[0].content);
-
+  const [memos, setMemos] = useState([]);
+  const [editingMemoID, setEditingMemoID] = useState();
+  const [text, setText] = useState();
 
   function handleMemoClick(memo) {
     setEditingMemoID(memo.id);
