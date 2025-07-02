@@ -54,7 +54,7 @@ function MemoTextArea({
 }
 
 function MemoEditor({
-  memo,
+  editingMemoID,
   text,
   setText,
   memos,
@@ -70,14 +70,14 @@ function MemoEditor({
       <div>
         <button
           onClick={() => {
-            handleUpdateButtonClick(memo, text);
+            handleUpdateButtonClick(editingMemoID, text);
           }}
         >
           更新
         </button>
         <button
           onClick={() => {
-            handleDeleteButtonClick(memos, memo);
+            handleDeleteButtonClick(memos, editingMemoID);
           }}
         >
           削除
@@ -109,11 +109,12 @@ const MEMOS = [
 
 export default function MemoApps() {
   const [memos, setMemos] = useState(MEMOS);
-  const [editingMemo, setEditingMemo] = useState(MEMOS[0]);
-  const [text, setText] = useState(editingMemo.content);
+  const [editingMemoID, setEditingMemoID] = useState(MEMOS[0].id);
+  const [text, setText] = useState(MEMOS[0].content);
+
 
   function handleMemoClick(memo) {
-    setEditingMemo(memo);
+    setEditingMemoID(memo.id);
     setText(memo.content);
   }
 
@@ -123,23 +124,22 @@ export default function MemoApps() {
     handleMemoClick(nextMemo);
   }
 
-  function handleUpdateButtonClick(memo, text) {
-    const updatedMemo = { ...memo, title: text.split("\n")[0], content: text };
+  function handleUpdateButtonClick(editingMemoID, text) {
+    const updatedMemo = { id: editingMemoID, title: text.split("\n")[0], content: text };
     setMemos(
       memos.map((m) => {
-        if (m.id === memo.id) {
+        if (m.id === editingMemoID) {
           return updatedMemo;
         } else {
           return m;
         }
       }),
     );
-    setEditingMemo(updatedMemo);
-    setText(updatedMemo.content);
+    handleMemoClick(updatedMemo);
   }
 
-  function handleDeleteButtonClick(memos, memo) {
-    setMemos(memos.filter((m) => m.id !== memo.id));
+  function handleDeleteButtonClick(memos, editingMemoID) {
+    setMemos(memos.filter((m) => m.id !== editingMemoID));
   }
 
   return (
@@ -150,7 +150,7 @@ export default function MemoApps() {
         handleAddButtonClick={handleAddButtonClick}
       />
       <MemoEditor
-        memo={editingMemo}
+        editingMemoID={editingMemoID}
         text={text}
         setText={setText}
         memos={memos}
