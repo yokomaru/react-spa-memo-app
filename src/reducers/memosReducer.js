@@ -3,7 +3,7 @@ export default function memosReducer(memos, action) {
     case 'added': {
       return [
         ...memos,
-        { id: action.id, title: action.title, content: action.content }
+        { id: action.id, title: action.title, content: action.content },
       ];
     }
     case 'changed': {
@@ -16,7 +16,7 @@ export default function memosReducer(memos, action) {
       });
     }
     case 'deleted': {
-      return memos.filter((m) => m.id !== action.id)
+      return memos.filter((m) => m.id !== action.id);
     }
     default: {
       throw Error('Unknown action: ' + action.type);

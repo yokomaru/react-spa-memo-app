@@ -1,7 +1,4 @@
-export default function MemoTextArea({
-  text,
-  setText,
-}) {
+export default function MemoTextArea({ text, setText }) {
   return (
     <div>
       <textarea

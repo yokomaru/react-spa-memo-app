@@ -9,10 +9,7 @@ export default function MemoEditor({
 }) {
   return (
     <section>
-      <MemoTextArea
-        text={text}
-        setText={setText}
-      />
+      <MemoTextArea text={text} setText={setText} />
       <div>
         <button
           onClick={() => {
