@@ -1,16 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect, useReducer } from "react";
 import "./App.css";
 import MemoIndex from './components/MemoIndex.jsx';
 import MemoEditor from './components/MemoEditor.jsx';
-import { useReducer } from 'react';
 import memosReducer from './reducers/memosReducer.js';
 
 let nextId = 0;
 
 export default function MemoApps() {
-  const [memos, dispatch] = useReducer(memosReducer,[]);
+  const [memos, dispatch] = useReducer(memosReducer, JSON.parse(localStorage.getItem('memos')) || []);
   const [editingMemoID, setEditingMemoID] = useState();
   const [text, setText] = useState();
+
+  useEffect(() => {
+    localStorage.setItem('memos', JSON.stringify(memos));
+  }, [memos]);
 
   function selectMemo(memo) {
     setEditingMemoID(memo.id);
