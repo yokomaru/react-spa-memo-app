@@ -3,16 +3,18 @@ import "./App.css";
 import MemoIndex from './components/MemoIndex.jsx';
 import MemoEditor from './components/MemoEditor.jsx';
 import memosReducer from './reducers/memosReducer.js';
+import {setItemsFromLocalStorage, getItemsToLocalStorage} from './utils/LocalStorage.js';
 
-let nextId = 0;
+let maxId = 0;
 
 export default function MemoApps() {
-  const [memos, dispatch] = useReducer(memosReducer, JSON.parse(localStorage.getItem('memos')) || []);
+  const [memos, dispatch] = useReducer(memosReducer, setItemsFromLocalStorage('memos') || []);
   const [editingMemoID, setEditingMemoID] = useState();
   const [text, setText] = useState();
 
   useEffect(() => {
-    localStorage.setItem('memos', JSON.stringify(memos));
+    getItemsToLocalStorage('memos', memos);
+    maxId = Math.max(0, ...memos.map(m => m.id));
   }, [memos]);
 
   function selectMemo(memo) {
@@ -21,7 +23,7 @@ export default function MemoApps() {
   }
 
   function handleAddButtonClick() {
-    const nextMemo = { id: nextId++, title: "新規メモ", content: "" };
+    const nextMemo = { id: ++maxId, title: "新規メモ", content: "" };
     dispatch({
       type: 'added',
       ...nextMemo
