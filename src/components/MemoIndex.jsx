@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import Memo from './Memo.jsx';
 
 export default function MemoIndex({
@@ -6,10 +7,11 @@ export default function MemoIndex({
   handleMemoClick,
   handleAddButtonClick,
 }) {
+  const visibleMemos = useMemo(() => memos, [memos]);
   return (
     <>
       <ul className="memos">
-        {memos.map((memo) => (
+        {visibleMemos.map((memo) => (
           <li key={memo.id} className="memo">
             <Memo
               memo={memo}
