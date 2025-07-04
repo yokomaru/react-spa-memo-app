@@ -7,7 +7,7 @@ export default function Memo({ memo, editingMemoID, handleMemoClick }) {
         handleMemoClick(e, memo);
       }}
     >
-      <span>{memo.title}</span>
+      <span>{memo.content.split('\n')[0]}</span>
     </a>
   );
 }

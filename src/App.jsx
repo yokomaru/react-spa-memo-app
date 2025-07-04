@@ -33,7 +33,6 @@ export default function App() {
     e.preventDefault();
     const nextMemo = {
       id: maxId.current,
-      title: '新規メモ',
       content: '新規メモ',
     };
     dispatch({
@@ -52,7 +51,6 @@ export default function App() {
     }
     const updatedMemo = {
       id: editingMemoID,
-      title: trimmed.split('\n')[0],
       content: trimmed,
     };
     dispatch({
