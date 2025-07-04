@@ -1,11 +1,13 @@
-export default function Memo({ memo, selectMemo }) {
+export default function Memo({ memo, editingMemoID, handleMemoClick }) {
   return (
-    <button
-      onClick={() => {
-        selectMemo(memo);
+    <a
+      className={memo.id === editingMemoID ? 'selected-memo' : undefined}
+      href="#"
+      onClick={(e) => {
+        handleMemoClick(e, memo);
       }}
     >
-      {memo.title}
-    </button>
+      <span>{memo.title}</span>
+    </a>
   );
 }

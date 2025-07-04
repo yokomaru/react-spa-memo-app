@@ -1,24 +1,35 @@
 import Memo from './Memo.jsx';
 
-export default function MemoIndex({ memos, selectMemo, handleAddButtonClick }) {
+export default function MemoIndex({
+  memos,
+  editingMemoID,
+  handleMemoClick,
+  handleAddButtonClick,
+}) {
   return (
-    <section>
-      <ul>
+    <>
+      <ul className="memos">
         {memos.map((memo) => (
-          <li key={memo.id}>
-            <Memo memo={memo} selectMemo={selectMemo} />
+          <li key={memo.id} className="memo">
+            <Memo
+              memo={memo}
+              editingMemoID={editingMemoID}
+              handleMemoClick={handleMemoClick}
+            />
           </li>
         ))}
       </ul>
       <div>
-        <button
+        <a
+          className="add-memo"
+          href="#"
           onClick={() => {
             handleAddButtonClick();
           }}
         >
-          +
-        </button>
+          <span>+</span>
+        </a>
       </div>
-    </section>
+    </>
   );
 }

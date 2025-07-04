@@ -8,9 +8,9 @@ export default function MemoEditor({
   handleDeleteButtonClick,
 }) {
   return (
-    <section>
+    <>
       <MemoTextArea text={text} setText={setText} />
-      <div>
+      <div className="memo-buttons">
         <button
           onClick={() => {
             handleUpdateButtonClick(editingMemoID, text);
@@ -26,6 +26,6 @@ export default function MemoEditor({
           削除
         </button>
       </div>
-    </section>
+    </>
   );
 }

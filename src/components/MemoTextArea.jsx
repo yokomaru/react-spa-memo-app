@@ -2,11 +2,9 @@ export default function MemoTextArea({ text, setText }) {
   return (
     <div>
       <textarea
-        name="memoContent"
+        className="memo-textarea"
         value={text}
         onChange={(e) => setText(e.target.value)}
-        rows={4}
-        cols={40}
       />
     </div>
   );

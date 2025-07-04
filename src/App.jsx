@@ -59,34 +59,42 @@ export default function App() {
 
   if (editingMemoID == null) {
     return (
-      <section>
-        <MemoIndex
-          memos={memos}
-          selectMemo={selectMemo}
-          handleAddButtonClick={handleAddButtonClick}
-        />
-      </section>
+      <>
+        <div className="main">
+          <div className="memo-index full">
+            <MemoIndex
+              memos={memos}
+              editingMemoID={editingMemoID}
+              handleMemoClick={handleMemoClick}
+              handleAddButtonClick={handleAddButtonClick}
+            />
+          </div>
+        </div>
+      </>
     );
   } else {
     return (
       <>
-        <section>
-          <MemoIndex
-            memos={memos}
-            selectMemo={selectMemo}
-            handleAddButtonClick={handleAddButtonClick}
-          />
-        </section>
-        <section>
-          <MemoEditor
-            editingMemoID={editingMemoID}
-            text={text}
-            setText={setText}
-            memos={memos}
-            handleUpdateButtonClick={handleUpdateButtonClick}
-            handleDeleteButtonClick={handleDeleteButtonClick}
-          />
-        </section>
+        <div className="main">
+          <div className="memo-index half">
+            <MemoIndex
+              memos={memos}
+              editingMemoID={editingMemoID}
+              handleMemoClick={handleMemoClick}
+              handleAddButtonClick={handleAddButtonClick}
+            />
+          </div>
+          <div className="memo-editor">
+            <MemoEditor
+              editingMemoID={editingMemoID}
+              text={text}
+              setText={setText}
+              memos={memos}
+              handleUpdateButtonClick={handleUpdateButtonClick}
+              handleDeleteButtonClick={handleDeleteButtonClick}
+            />
+          </div>
+        </div>
       </>
     );
   }
