@@ -1,14 +1,70 @@
-# React + Vite
+# 初回実行
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+以下コマンドを実行してください
 
-Currently, two official plugins are available:
+1. リポジトリをクローン
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```shell
+git clone https://github.com/yokomaru/react-spa-memo-app.git
+```
 
-## Expanding the ESLint configuration
+2. ディレクトリとブランチを変更
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```shell
+cd sample-react-memo-spa
+git checkout my-react-spa-memo-app
+```
 
-# react-spa-memo-app
+3. npmをインストール
+
+```shell
+npm install
+```
+
+4. アプリを起動し、ブラウザを立ち上げてください
+
+```shell
+npm run dev
+```
+
+# メモアプリの操作
+
+## メモの一覧表示画面
+- 一覧表示画面がトップ画面となります
+- タイトル(内容の1行目)をクリックするとそのメモの編集状態に移行します
+
+### デモ
+
+## メモの新規作成
+
+- **+**をクリックすると「新規メモ」というメモファイルが作成され、編集状態に移行します。
+
+### デモ
+
+## メモの編集
+- テキストエリアにメモの内容が表示されるので自由に編集してください。
+- 更新ボタンをクリックすると保存されます。
+- 前後の改行や空白は除去されます。
+- 何も入力がない場合は保存できません。
+
+### デモ
+
+## メモの削除
+
+- 編集状態で削除ボタンをクリックするとメモは削除され、一覧画面に移動します。
+
+### デモ
+
+# Prettier & Lint
+
+## スタイルチェック
+
+```shell
+npm run lint
+```
+
+## スタイル修正
+
+```shell
+npm run fix
+```
