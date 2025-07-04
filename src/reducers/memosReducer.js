@@ -3,7 +3,7 @@ export default function memosReducer(memos, action) {
     case 'added': {
       return [...memos, { id: action.id, content: action.content }];
     }
-    case 'changed': {
+    case 'updated': {
       return memos.map((m) => {
         if (m.id === action.memo.id) {
           return action.memo;
