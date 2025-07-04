@@ -23,8 +23,8 @@ export default function MemoIndex({
         <a
           className="add-memo"
           href="#"
-          onClick={() => {
-            handleAddButtonClick();
+          onClick={(e) => {
+            handleAddButtonClick(e);
           }}
         >
           <span>+</span>

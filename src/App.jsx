@@ -23,25 +23,37 @@ export default function App() {
     maxId.current = Math.max(-1, ...memos.map((m) => m.id)) + 1;
   }, [memos]);
 
-  function selectMemo(memo) {
+  function handleMemoClick(e, memo) {
+    e.preventDefault();
     setEditingMemoID(memo.id);
     setText(memo.content);
   }
 
-  function handleAddButtonClick() {
-    const nextMemo = { id: maxId.current, title: '新規メモ', content: '' };
+  function handleAddButtonClick(e) {
+    e.preventDefault();
+    const nextMemo = {
+      id: maxId.current,
+      title: '新規メモ',
+      content: '新規メモ',
+    };
     dispatch({
       type: 'added',
       ...nextMemo,
     });
+    setEditingMemoID(nextMemo.id);
     setText(nextMemo.content);
   }
 
   function handleUpdateButtonClick(editingMemoID, text) {
+    const trimmed = text.trim();
+    if (trimmed === '') {
+      alert('空白では入力できません');
+      return;
+    }
     const updatedMemo = {
       id: editingMemoID,
-      title: text.split('\n')[0],
-      content: text,
+      title: trimmed.split('\n')[0],
+      content: trimmed,
     };
     dispatch({
       type: 'changed',
