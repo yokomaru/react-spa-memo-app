@@ -4,8 +4,8 @@ import MemoIndex from './components/MemoIndex.jsx';
 import MemoEditor from './components/MemoEditor.jsx';
 import memosReducer from './reducers/memosReducer.js';
 import {
-  setItemsFromLocalStorage,
-  getItemsToLocalStorage,
+  setItemsToLocalStorage,
+  getItemsFromLocalStorage,
 } from './utils/LocalStorage.js';
 
 export default function App() {
@@ -13,13 +13,13 @@ export default function App() {
 
   const [memos, dispatch] = useReducer(
     memosReducer,
-    setItemsFromLocalStorage('memos') || [],
+    setItemsToLocalStorage('memos') || [],
   );
   const [editingMemoID, setEditingMemoID] = useState();
   const [text, setText] = useState();
 
   useEffect(() => {
-    getItemsToLocalStorage('memos', memos);
+    getItemsFromLocalStorage('memos', memos);
     maxId.current = Math.max(-1, ...memos.map((m) => m.id)) + 1;
   }, [memos]);
 
