@@ -37,7 +37,9 @@ a.add-memo {
 }
 
 a.selected-memo {
+  pointer-events: none;
   text-decoration: none;
+  cursor: pointer;
   color: #000;
 }
 
