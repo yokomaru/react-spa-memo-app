@@ -36,10 +36,6 @@ a.add-memo {
   text-decoration: none;
 }
 
-a.add-memo:hover {
-  text-decoration: none;
-}
-
 a.selected-memo {
   text-decoration: none;
   color: #000;
