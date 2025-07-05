@@ -1,0 +1,6 @@
+.prettierignore
+node_modules/
+public/
+package-lock.json
+vite.config.js
+eslint.config.js
