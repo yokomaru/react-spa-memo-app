@@ -13,13 +13,12 @@ export default function App() {
 
   const [memos, dispatch] = useReducer(
     memosReducer,
-    setItemsToLocalStorage('memos') || [],
+    getItemsFromLocalStorage('memos') || [],
   );
   const [editingMemoID, setEditingMemoID] = useState();
   const [text, setText] = useState();
 
   useEffect(() => {
-    getItemsFromLocalStorage('memos', memos);
     maxId.current = Math.max(-1, ...memos.map((m) => m.id)) + 1;
   }, [memos]);
 
@@ -39,6 +38,7 @@ export default function App() {
       type: 'added',
       ...nextMemo,
     });
+    setItemsToLocalStorage('memos', memos);
     setEditingMemoID(nextMemo.id);
     setText(nextMemo.content);
   }
@@ -54,9 +54,10 @@ export default function App() {
       content: trimmed,
     };
     dispatch({
-      type: 'changed',
+      type: 'updated',
       memo: updatedMemo,
     });
+    setItemsToLocalStorage('memos', memos);
   }
 
   function handleDeleteButtonClick(editingMemoID) {
