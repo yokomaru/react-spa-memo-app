@@ -1,7 +1,7 @@
 import MemoTextArea from './MemoTextArea.jsx';
 
 export default function MemoEditor({
-  editingMemoID,
+  id,
   text,
   setText,
   handleUpdateButtonClick,
@@ -13,14 +13,14 @@ export default function MemoEditor({
       <div className="memo-buttons">
         <button
           onClick={() => {
-            handleUpdateButtonClick(editingMemoID, text);
+            handleUpdateButtonClick(id, text);
           }}
         >
           更新
         </button>
         <button
           onClick={() => {
-            handleDeleteButtonClick(editingMemoID);
+            handleDeleteButtonClick(id);
           }}
         >
           削除

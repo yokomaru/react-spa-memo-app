@@ -41,28 +41,28 @@ export default function App() {
     setText(nextMemo.content);
   }
 
-  function handleUpdateButtonClick(editingMemoID, text) {
-    const trimmed = text.trim();
-    if (trimmed === '') {
+  function handleUpdateButtonClick(id, text) {
+    const content = text.trim();
+    if (content === '') {
       alert('空白では入力できません');
       return;
     }
     const updatedMemo = {
-      id: editingMemoID,
-      content: trimmed,
+      id: id,
+      content: content,
     };
     dispatch({
       type: 'updated',
       memo: updatedMemo,
     });
-    setEditingMemoID(editingMemoID);
-    setText(trimmed);
+    setEditingMemoID(id);
+    setText(content);
   }
 
-  function handleDeleteButtonClick(editingMemoID) {
+  function handleDeleteButtonClick(id) {
     dispatch({
       type: 'deleted',
-      id: editingMemoID,
+      id: id,
     });
     setEditingMemoID();
     setText('');
@@ -97,7 +97,7 @@ export default function App() {
           </div>
           <div className="memo-editor">
             <MemoEditor
-              editingMemoID={editingMemoID}
+              id={editingMemoID}
               text={text}
               setText={setText}
               memos={memos}
