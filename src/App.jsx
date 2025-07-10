@@ -68,7 +68,7 @@ export default function App() {
     setEditingMemoID();
   }
 
-  if (editingMemoID == null) {
+  if (editingMemoID === null) {
     return (
       <>
         <div className="main">
