@@ -1,4 +1,4 @@
-import { useState, useReducer } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 import './App.css';
 import MemoIndex from './components/MemoIndex.jsx';
 import MemoEditor from './components/MemoEditor.jsx';
@@ -15,6 +15,10 @@ export default function App() {
   );
   const [editingMemoID, setEditingMemoID] = useState();
   const [text, setText] = useState();
+
+  useEffect(() => {
+    setItemsToLocalStorage('memos', memos);
+  }, [memos]);
 
   function handleMemoClick(e, memo) {
     e.preventDefault();
@@ -33,7 +37,6 @@ export default function App() {
       type: 'added',
       ...nextMemo,
     });
-    setItemsToLocalStorage('memos', memos);
     setEditingMemoID(nextMemo.id);
     setText(nextMemo.content);
   }
@@ -52,7 +55,8 @@ export default function App() {
       type: 'updated',
       memo: updatedMemo,
     });
-    setItemsToLocalStorage('memos', memos);
+    setEditingMemoID(editingMemoID);
+    setText(trimmed);
   }
 
   function handleDeleteButtonClick(editingMemoID) {
@@ -61,6 +65,7 @@ export default function App() {
       id: editingMemoID,
     });
     setEditingMemoID();
+    setText('');
   }
 
   if (editingMemoID === null) {
