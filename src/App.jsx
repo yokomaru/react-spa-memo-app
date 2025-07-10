@@ -1,4 +1,4 @@
-import { useState, useEffect, useReducer, useRef } from 'react';
+import { useState, useReducer } from 'react';
 import './App.css';
 import MemoIndex from './components/MemoIndex.jsx';
 import MemoEditor from './components/MemoEditor.jsx';
@@ -9,18 +9,12 @@ import {
 } from './utils/LocalStorage.js';
 
 export default function App() {
-  let maxId = useRef(0);
-
   const [memos, dispatch] = useReducer(
     memosReducer,
     getItemsFromLocalStorage('memos') || [],
   );
   const [editingMemoID, setEditingMemoID] = useState();
   const [text, setText] = useState();
-
-  useEffect(() => {
-    maxId.current = Math.max(-1, ...memos.map((m) => m.id)) + 1;
-  }, [memos]);
 
   function handleMemoClick(e, memo) {
     e.preventDefault();
@@ -29,9 +23,10 @@ export default function App() {
   }
 
   function handleAddButtonClick(e) {
+    const maxId = Math.max(-1, ...memos.map((m) => m.id)) + 1;
     e.preventDefault();
     const nextMemo = {
-      id: maxId.current,
+      id: maxId,
       content: '新規メモ',
     };
     dispatch({
