@@ -68,7 +68,7 @@ export default function App() {
     setText('');
   }
 
-  if (editingMemoID === null) {
+  if (editingMemoID === undefined) {
     return (
       <>
         <div className="main">
