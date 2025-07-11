@@ -11,7 +11,7 @@ import {
 export default function App() {
   const [memos, dispatch] = useReducer(
     memosReducer,
-    getItemsFromLocalStorage('memos') || [],
+    getItemsFromLocalStorage('memos'),
   );
   const [editingMemo, setEditingMemo] = useState();
 
