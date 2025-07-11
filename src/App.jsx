@@ -3,6 +3,7 @@ import MemoIndex from './components/MemoIndex.jsx';
 import MemoEditor from './components/MemoEditor.jsx';
 import useMemos from './hooks/useMemos.js';
 import { useState } from 'react';
+import MemoLogin from './components/MemoLogin.jsx';
 
 export default function App() {
   const [editingMemo, setEditingMemo] = useState();
@@ -45,9 +46,8 @@ export default function App() {
 
   return (
     <>
-      <div className="header" >
-        <button>ログイン</button>
-      </div>
+      <MemoLogin />
+
       <div className="main">
         <div className={'memo-index ' + (editingMemo ? 'half' : 'full')}>
           <MemoIndex
