@@ -68,33 +68,18 @@ export default function App() {
     setText('');
   }
 
-  if (editingMemoID === undefined) {
-    return (
-      <>
-        <div className="main">
-          <div className="memo-index full">
-            <MemoIndex
-              memos={memos}
-              editingMemoID={editingMemoID}
-              handleMemoClick={handleMemoClick}
-              handleAddButtonClick={handleAddButtonClick}
-            />
-          </div>
+  return (
+    <>
+      <div className="main">
+        <div className={'memo-index ' + (editingMemoID ? 'half' : 'full')}>
+          <MemoIndex
+            memos={memos}
+            editingMemoID={editingMemoID}
+            handleMemoClick={handleMemoClick}
+            handleAddButtonClick={handleAddButtonClick}
+          />
         </div>
-      </>
-    );
-  } else {
-    return (
-      <>
-        <div className="main">
-          <div className="memo-index half">
-            <MemoIndex
-              memos={memos}
-              editingMemoID={editingMemoID}
-              handleMemoClick={handleMemoClick}
-              handleAddButtonClick={handleAddButtonClick}
-            />
-          </div>
+        {editingMemoID && (
           <div className="memo-editor">
             <MemoEditor
               id={editingMemoID}
@@ -105,8 +90,8 @@ export default function App() {
               handleDeleteButtonClick={handleDeleteButtonClick}
             />
           </div>
-        </div>
-      </>
-    );
-  }
+        )}
+      </div>
+    </>
+  );
 }
