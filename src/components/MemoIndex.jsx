@@ -3,7 +3,7 @@ import Memo from './Memo.jsx';
 
 export default function MemoIndex({
   memos,
-  editingMemoID,
+  editingMemo,
   handleMemoClick,
   handleAddButtonClick,
 }) {
@@ -15,7 +15,7 @@ export default function MemoIndex({
           <li key={memo.id} className="memo">
             <Memo
               memo={memo}
-              editingMemoID={editingMemoID}
+              editingMemo={editingMemo}
               handleMemoClick={handleMemoClick}
             />
           </li>

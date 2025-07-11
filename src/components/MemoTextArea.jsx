@@ -1,10 +1,12 @@
-export default function MemoTextArea({ text, setText }) {
+export default function MemoTextArea({ editingMemo, setEditingMemo }) {
   return (
     <div>
       <textarea
         className="memo-textarea"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
+        value={editingMemo.content}
+        onChange={(e) =>
+          setEditingMemo({ id: editingMemo.id, content: e.target.value })
+        }
       />
     </div>
   );

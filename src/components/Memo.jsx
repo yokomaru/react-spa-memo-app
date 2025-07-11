@@ -1,7 +1,7 @@
-export default function Memo({ memo, editingMemoID, handleMemoClick }) {
+export default function Memo({ memo, editingMemo, handleMemoClick }) {
   return (
     <a
-      className={memo.id === editingMemoID ? 'selected-memo' : undefined}
+      className={memo.id === editingMemo?.id ? 'selected-memo' : undefined}
       href="#"
       onClick={(e) => {
         handleMemoClick(e, memo);

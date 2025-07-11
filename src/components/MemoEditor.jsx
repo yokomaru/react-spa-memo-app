@@ -1,26 +1,25 @@
 import MemoTextArea from './MemoTextArea.jsx';
 
 export default function MemoEditor({
-  id,
-  text,
-  setText,
+  editingMemo,
+  setEditingMemo,
   handleUpdateButtonClick,
   handleDeleteButtonClick,
 }) {
   return (
     <>
-      <MemoTextArea text={text} setText={setText} />
+      <MemoTextArea editingMemo={editingMemo} setEditingMemo={setEditingMemo} />
       <div className="memo-buttons">
         <button
           onClick={() => {
-            handleUpdateButtonClick(id, text);
+            handleUpdateButtonClick(editingMemo);
           }}
         >
           更新
         </button>
         <button
           onClick={() => {
-            handleDeleteButtonClick(id);
+            handleDeleteButtonClick(editingMemo);
           }}
         >
           削除

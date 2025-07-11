@@ -13,8 +13,7 @@ export default function App() {
     memosReducer,
     getItemsFromLocalStorage('memos') || [],
   );
-  const [editingMemoID, setEditingMemoID] = useState();
-  const [text, setText] = useState();
+  const [editingMemo, setEditingMemo] = useState();
 
   useEffect(() => {
     setItemsToLocalStorage('memos', memos);
@@ -22,8 +21,7 @@ export default function App() {
 
   function handleMemoClick(e, memo) {
     e.preventDefault();
-    setEditingMemoID(memo.id);
-    setText(memo.content);
+    setEditingMemo(memo);
   }
 
   function handleAddButtonClick(e) {
@@ -37,55 +35,50 @@ export default function App() {
       type: 'added',
       ...nextMemo,
     });
-    setEditingMemoID(nextMemo.id);
-    setText(nextMemo.content);
+    setEditingMemo(nextMemo);
   }
 
-  function handleUpdateButtonClick(id, text) {
-    const content = text.trim();
+  function handleUpdateButtonClick(editingMemo) {
+    const content = editingMemo.content.trim();
     if (content === '') {
       alert('空白では入力できません');
       return;
     }
     const updatedMemo = {
-      id: id,
+      id: editingMemo.id,
       content: content,
     };
     dispatch({
       type: 'updated',
       memo: updatedMemo,
     });
-    setEditingMemoID(id);
-    setText(content);
+    setEditingMemo(updatedMemo);
   }
 
-  function handleDeleteButtonClick(id) {
+  function handleDeleteButtonClick(editingMemo) {
     dispatch({
       type: 'deleted',
-      id: id,
+      id: editingMemo.id,
     });
-    setEditingMemoID();
-    setText('');
+    setEditingMemo();
   }
 
   return (
     <>
       <div className="main">
-        <div className={'memo-index ' + (editingMemoID ? 'half' : 'full')}>
+        <div className={'memo-index ' + (editingMemo ? 'half' : 'full')}>
           <MemoIndex
             memos={memos}
-            editingMemoID={editingMemoID}
+            editingMemo={editingMemo}
             handleMemoClick={handleMemoClick}
             handleAddButtonClick={handleAddButtonClick}
           />
         </div>
-        {editingMemoID && (
+        {editingMemo && (
           <div className="memo-editor">
             <MemoEditor
-              id={editingMemoID}
-              text={text}
-              setText={setText}
-              memos={memos}
+              editingMemo={editingMemo}
+              setEditingMemo={setEditingMemo}
               handleUpdateButtonClick={handleUpdateButtonClick}
               handleDeleteButtonClick={handleDeleteButtonClick}
             />
