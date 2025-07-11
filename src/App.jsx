@@ -45,6 +45,9 @@ export default function App() {
 
   return (
     <>
+      <div className="header" >
+        <button>ログイン</button>
+      </div>
       <div className="main">
         <div className={'memo-index ' + (editingMemo ? 'half' : 'full')}>
           <MemoIndex
