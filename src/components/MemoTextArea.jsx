@@ -5,7 +5,7 @@ export default function MemoTextArea({ editingMemo, setEditingMemo }) {
         className="memo-textarea"
         value={editingMemo.content}
         onChange={(e) =>
-          setEditingMemo({ id: editingMemo.id, content: e.target.value })
+          setEditingMemo({ ...editingMemo, content: e.target.value })
         }
       />
     </div>
