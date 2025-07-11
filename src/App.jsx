@@ -38,14 +38,14 @@ export default function App() {
     setEditingMemo(nextMemo);
   }
 
-  function handleUpdateButtonClick(editingMemo) {
-    const content = editingMemo.content.trim();
+  function handleUpdateButtonClick(memo) {
+    const content = memo.content.trim();
     if (content === '') {
       alert('空白では入力できません');
       return;
     }
     const updatedMemo = {
-      id: editingMemo.id,
+      id: memo.id,
       content: content,
     };
     dispatch({
@@ -55,10 +55,10 @@ export default function App() {
     setEditingMemo(updatedMemo);
   }
 
-  function handleDeleteButtonClick(editingMemo) {
+  function handleDeleteButtonClick(memo) {
     dispatch({
       type: 'deleted',
-      id: editingMemo.id,
+      id: memo.id,
     });
     setEditingMemo();
   }
