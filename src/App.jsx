@@ -6,6 +6,7 @@ import { useState } from 'react';
 import MemoLogin from './components/MemoLogin.jsx';
 
 export default function App() {
+  const [login, setLogin] = useState(false);
   const [editingMemo, setEditingMemo] = useState();
   const { memos, addMemo, updateMemo, deleteMemo } = useMemos();
 
@@ -46,8 +47,11 @@ export default function App() {
 
   return (
     <>
-      <MemoLogin />
-
+      <div className="header">
+        <button onClick={() => {
+        setLogin(login? false : true);
+      }}>{login ? 'ログアウト' : 'ログイン'}</button>
+      </div>
       <div className="main">
         <div className={'memo-index ' + (editingMemo ? 'half' : 'full')}>
           <MemoIndex
