@@ -46,7 +46,7 @@ export default function App() {
     }
     const updatedMemo = {
       id: memo.id,
-      content: content,
+      content,
     };
     dispatch({
       type: 'updated',
