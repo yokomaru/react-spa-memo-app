@@ -3,7 +3,7 @@ import memosReducer from '../reducers/memosReducer.js';
 import {
   setItemsToLocalStorage,
   getItemsFromLocalStorage,
-} from '../utils/LocalStorage.js';
+} from '../utils/localStorage.js';
 
 export default function useMemos() {
   const [editingMemo, setEditingMemo] = useState();
