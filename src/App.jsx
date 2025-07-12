@@ -5,6 +5,7 @@ import useMemos from './hooks/useMemos.js';
 import { useState } from 'react';
 import MemoLogin from './components/MemoLogin.jsx';
 
+import { LoginContext } from './contexts/LoginContext.js';
 export default function App() {
   const [login, setLogin] = useState(false);
   const [editingMemo, setEditingMemo] = useState();
@@ -47,31 +48,37 @@ export default function App() {
 
   return (
     <>
-      <div className="header">
-        <button onClick={() => {
-        setLogin(login? false : true);
-      }}>{login ? 'ログアウト' : 'ログイン'}</button>
-      </div>
-      <div className="main">
-        <div className={'memo-index ' + (editingMemo ? 'half' : 'full')}>
-          <MemoIndex
-            memos={memos}
-            editingMemo={editingMemo}
-            handleMemoClick={handleMemoClick}
-            handleAddButtonClick={handleAddButtonClick}
-          />
+      <LoginContext value={login}>
+        <div className="header">
+          <button
+            onClick={() => {
+              setLogin(login ? false : true);
+            }}
+          >
+            {login ? 'ログアウト' : 'ログイン'}
+          </button>
         </div>
-        {editingMemo && (
-          <div className="memo-editor">
-            <MemoEditor
+        <div className="main">
+          <div className={'memo-index ' + (editingMemo ? 'half' : 'full')}>
+            <MemoIndex
+              memos={memos}
               editingMemo={editingMemo}
-              setEditingMemo={setEditingMemo}
-              handleUpdateButtonClick={handleUpdateButtonClick}
-              handleDeleteButtonClick={handleDeleteButtonClick}
+              handleMemoClick={handleMemoClick}
+              handleAddButtonClick={handleAddButtonClick}
             />
           </div>
-        )}
-      </div>
+          {editingMemo && (
+            <div className="memo-editor">
+              <MemoEditor
+                editingMemo={editingMemo}
+                setEditingMemo={setEditingMemo}
+                handleUpdateButtonClick={handleUpdateButtonClick}
+                handleDeleteButtonClick={handleDeleteButtonClick}
+              />
+            </div>
+          )}
+        </div>
+      </LoginContext>
     </>
   );
 }
