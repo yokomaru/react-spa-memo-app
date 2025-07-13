@@ -1,7 +1,7 @@
 export default function memosReducer(memos, action) {
   switch (action.type) {
     case 'added': {
-      return [...memos, { id: action.id, content: action.content }];
+      return [...memos, action.memo];
     }
     case 'updated': {
       return memos.map((m) => {

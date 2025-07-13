@@ -18,14 +18,14 @@ export default function useMemos() {
   function addMemo(memo) {
     dispatch({
       type: 'added',
-      ...memo,
+      memo,
     });
   }
 
   function updateMemo(memo) {
     dispatch({
       type: 'updated',
-      memo: memo,
+      memo,
     });
   }
 
