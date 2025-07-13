@@ -1,5 +1,4 @@
-import { useContext } from 'react';
-import { LoginContext } from '../contexts/LoginContext.js';
+import { useLogin } from '../hooks/LoginHook.jsx';
 import MemoTextArea from './MemoTextArea.jsx';
 
 export default function MemoEditor({
@@ -8,7 +7,7 @@ export default function MemoEditor({
   handleUpdateButtonClick,
   handleDeleteButtonClick,
 }) {
-  const login = useContext(LoginContext);
+  const { login } = useLogin();
   return (
     <>
       <MemoTextArea editingMemo={editingMemo} setEditingMemo={setEditingMemo} />

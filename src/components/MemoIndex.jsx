@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import Memo from './Memo.jsx';
-import { useContext } from 'react';
-import { LoginContext } from '../contexts/LoginContext.js';
+import { useLogin } from '../hooks/LoginHook.jsx';
 export default function MemoIndex({
   memos,
   editingMemo,
@@ -9,7 +8,7 @@ export default function MemoIndex({
   handleAddButtonClick,
 }) {
   const visibleMemos = useMemo(() => memos, [memos]);
-  const login = useContext(LoginContext);
+  const { login } = useLogin();
   return (
     <>
       <ul className="memos">

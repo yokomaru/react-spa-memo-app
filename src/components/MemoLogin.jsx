@@ -1,12 +1,18 @@
-import { useContext } from 'react';
-import { LoginContext } from '../contexts/LoginContext.js';
+import { useLogin } from '../hooks/LoginHook.jsx';
 
 export default function MemoLogin() {
-  const login = useContext(LoginContext);
+  const { login, setLogin } = useLogin();
+
   return (
     <>
       <div className="header">
-        <button>{login ? 'ログアウト' : 'ログイン'}</button>
+        <button
+          onClick={() => {
+            setLogin(!login);
+          }}
+        >
+          {login ? 'ログアウト' : 'ログイン'}
+        </button>
       </div>
     </>
   );
