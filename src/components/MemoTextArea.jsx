@@ -1,4 +1,4 @@
-import { useLogin } from '../hooks/LoginHook.jsx';
+import { useLogin } from '../hooks/useLogin.js';
 
 export default function MemoTextArea({ editingMemo, setEditingMemo }) {
   const { login } = useLogin();

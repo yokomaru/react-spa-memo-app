@@ -6,6 +6,7 @@ import useMemos from './hooks/useMemos.js';
 import { useState } from 'react';
 
 import { LoginProvider } from './hooks/LoginHook.jsx';
+
 function AppContent() {
   const [editingMemo, setEditingMemo] = useState();
   const { memos, addMemo, updateMemo, deleteMemo } = useMemos();

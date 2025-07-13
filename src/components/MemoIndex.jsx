@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import Memo from './Memo.jsx';
-import { useLogin } from '../hooks/LoginHook.jsx';
+import { useLogin } from '../hooks/useLogin.js';
+
 export default function MemoIndex({
   memos,
   editingMemo,

@@ -1,14 +1,8 @@
-import { createContext, useState, useContext } from 'react';
+import { useState } from 'react';
+import { LoginContext } from '../hooks/useLogin.js';
 
-const LoginContext = createContext();
 export const LoginProvider = ({ children }) => {
   const [login, setLogin] = useState(false);
 
-  return (
-    <LoginContext value={{ login, setLogin }}>
-      {children}
-    </LoginContext>
-  );
+  return <LoginContext value={{ login, setLogin }}>{children}</LoginContext>;
 };
-
-export const useLogin = () => useContext(LoginContext);
