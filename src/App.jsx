@@ -1,35 +1,70 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import MemoIndex from './components/MemoIndex.jsx';
+import MemoEditor from './components/MemoEditor.jsx';
+import useMemos from './hooks/useMemos.js';
+import { useState } from 'react';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [editingMemo, setEditingMemo] = useState();
+  const { memos, addMemo, updateMemo, deleteMemo } = useMemos();
+
+  function handleMemoClick(e, memo) {
+    e.preventDefault();
+    setEditingMemo(memo);
+  }
+
+  function handleAddButtonClick(e) {
+    e.preventDefault();
+    const maxId = Math.max(-1, ...memos.map((m) => m.id)) + 1;
+    const nextMemo = {
+      id: maxId,
+      content: '新規メモ',
+    };
+    addMemo(nextMemo);
+    setEditingMemo(nextMemo);
+  }
+
+  function handleUpdateButtonClick(memo) {
+    const content = memo.content.trim();
+    if (content === '') {
+      alert('空白では入力できません');
+      return;
+    }
+    const updatedMemo = {
+      id: memo.id,
+      content,
+    };
+    updateMemo(updatedMemo);
+    setEditingMemo(updatedMemo);
+  }
+
+  function handleDeleteButtonClick(memo) {
+    deleteMemo(memo);
+    setEditingMemo();
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="main">
+        <div className={'memo-index ' + (editingMemo ? 'half' : 'full')}>
+          <MemoIndex
+            memos={memos}
+            editingMemo={editingMemo}
+            handleMemoClick={handleMemoClick}
+            handleAddButtonClick={handleAddButtonClick}
+          />
+        </div>
+        {editingMemo && (
+          <div className="memo-editor">
+            <MemoEditor
+              editingMemo={editingMemo}
+              setEditingMemo={setEditingMemo}
+              handleUpdateButtonClick={handleUpdateButtonClick}
+              handleDeleteButtonClick={handleDeleteButtonClick}
+            />
+          </div>
+        )}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
-
-export default App
