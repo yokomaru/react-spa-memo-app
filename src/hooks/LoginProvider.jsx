@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { LoginContext } from '../hooks/useLogin.js';
+import { LoginContext } from './useLogin.js';
 
 export const LoginProvider = ({ children }) => {
   const [login, setLogin] = useState(false);
