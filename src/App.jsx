@@ -1,10 +1,12 @@
 import './App.css';
 import MemoIndex from './components/MemoIndex.jsx';
 import MemoEditor from './components/MemoEditor.jsx';
+import MemoLogin from './components/MemoLogin.jsx';
 import useMemos from './hooks/useMemos.js';
 import { useState } from 'react';
+import { LoginProvider } from './hooks/LoginProvider.jsx';
 
-export default function App() {
+function AppContent() {
   const [editingMemo, setEditingMemo] = useState();
   const { memos, addMemo, updateMemo, deleteMemo } = useMemos();
 
@@ -45,6 +47,9 @@ export default function App() {
 
   return (
     <>
+      <div className="header">
+        <MemoLogin />
+      </div>
       <div className="main">
         <div className={'memo-index ' + (editingMemo ? 'half' : 'full')}>
           <MemoIndex
@@ -66,5 +71,13 @@ export default function App() {
         )}
       </div>
     </>
+  );
+}
+
+export default function App() {
+  return (
+    <LoginProvider>
+      <AppContent />
+    </LoginProvider>
   );
 }

@@ -29,6 +29,26 @@ npm run dev
 
 # メモアプリの操作
 
+## ログイン・ログアウト
+
+- ログアウト時はログインボタン、ログイン時はログアウトボタンが表示され、状態によりできることが異なります
+
+![画面収録-2025-07-15-7 47 27](https://github.com/user-attachments/assets/dc356dcd-029c-4a6f-8b6e-1ef36b33b528)
+
+### ログアウト時
+
+- メモの閲覧のみ可能
+
+<img width="800" height="620" alt="スクリーンショット 2025-07-15 7 45 22" src="https://github.com/user-attachments/assets/6118c59d-ba42-4af1-879e-44a44694dbab" />
+
+### ログイン時はログアウトボタンを表示
+
+- メモの追加/更新/削除が可能
+
+<img width="800" height="602" alt="スクリーンショット 2025-07-15 7 45 27" src="https://github.com/user-attachments/assets/8e22a1d7-0d44-4adf-abef-b9e454639e59" />
+
+# メモアプリの操作
+
 ## メモの一覧表示画面
 
 - 一覧表示画面がトップ画面となります
@@ -36,38 +56,38 @@ npm run dev
 
 ### デモ
 
-![画面収録 2025-07-05 10 41 50](https://github.com/user-attachments/assets/86f21eb4-2e3a-4359-afc3-546eefbeab2e)
+![画面収録-2025-07-16-6 23 46](https://github.com/user-attachments/assets/50278e44-d20a-496e-8794-23c16fe3cfb6)
 
 ## メモの新規作成
 
-- +をクリックすると「新規メモ」というメモファイルが作成され、編集状態に移行します。
+- +をクリックすると「新規メモ」というメモファイルが作成され、編集状態に移行します
 
 ### デモ
 
-![画面収録 2025-07-05 10 43 03](https://github.com/user-attachments/assets/51e15cb3-20d8-4817-abe8-080717056f68)
+![画面収録-2025-07-15-7 47 43](https://github.com/user-attachments/assets/7a3a5352-c173-4ff5-aa23-8742a07b9874)
 
 ## メモの編集
 
-- テキストエリアにメモの内容が表示されるので自由に編集してください。
-- 更新ボタンをクリックすると保存されます。
-- 前後の改行や空白は除去されます。
-- 何も入力がない場合は保存できません。
+- テキストエリアにメモの内容が表示されるので自由に編集してください
+- 更新ボタンをクリックすると保存されます
+- 前後の改行や空白は除去されます
+- 何も入力がない場合は保存できません
 
 ### デモ
 
-![画面収録 2025-07-05 10 43 23](https://github.com/user-attachments/assets/52640b82-38eb-453f-9755-21c55efce43e)
+![画面収録-2025-07-15-7 48 09](https://github.com/user-attachments/assets/f397c800-2889-44c3-bd15-95de1616b20e)
 
 #### 保存できないときのアラート
 
-<img width="500" alt="スクリーンショット 2025-07-05 10 16 40" src="https://github.com/user-attachments/assets/6c9e1c81-6e79-40a6-8c2b-d316cbc1b111" />
+![画面収録-2025-07-15-7 48 40](https://github.com/user-attachments/assets/7411f05d-5dd8-4143-adce-c5be6fbb8a5e)
 
 ## メモの削除
 
-- 編集状態で削除ボタンをクリックするとメモは削除され、一覧画面に移動します。
+- 編集状態で削除ボタンをクリックするとメモは削除され、一覧画面に移動します
 
 ### デモ
 
-![画面収録 2025-07-05 10 43 37](https://github.com/user-attachments/assets/54f11300-18e2-4130-864b-5a46a6237263)
+![画面収録-2025-07-15-7 48 27](https://github.com/user-attachments/assets/3aa250a8-c558-4c15-ac26-4c2528e8edce)
 
 # ESLint & Prettier
 

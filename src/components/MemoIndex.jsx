@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import Memo from './Memo.jsx';
+import { useLogin } from '../hooks/useLogin.js';
 
 export default function MemoIndex({
   memos,
@@ -8,6 +9,7 @@ export default function MemoIndex({
   handleAddButtonClick,
 }) {
   const visibleMemos = useMemo(() => memos, [memos]);
+  const { login } = useLogin();
   return (
     <>
       <ul className="memos">
@@ -21,17 +23,19 @@ export default function MemoIndex({
           </li>
         ))}
       </ul>
-      <div>
-        <a
-          className="add-memo"
-          href="#"
-          onClick={(e) => {
-            handleAddButtonClick(e);
-          }}
-        >
-          <span>+</span>
-        </a>
-      </div>
+      {login && (
+        <div>
+          <a
+            className="add-memo"
+            href="#"
+            onClick={(e) => {
+              handleAddButtonClick(e);
+            }}
+          >
+            <span>+</span>
+          </a>
+        </div>
+      )}
     </>
   );
 }

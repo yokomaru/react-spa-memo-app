@@ -1,4 +1,5 @@
 import MemoTextArea from './MemoTextArea.jsx';
+import { useLogin } from '../hooks/useLogin.js';
 
 export default function MemoEditor({
   editingMemo,
@@ -6,25 +7,28 @@ export default function MemoEditor({
   handleUpdateButtonClick,
   handleDeleteButtonClick,
 }) {
+  const { login } = useLogin();
   return (
     <>
       <MemoTextArea editingMemo={editingMemo} setEditingMemo={setEditingMemo} />
-      <div className="memo-buttons">
-        <button
-          onClick={() => {
-            handleUpdateButtonClick(editingMemo);
-          }}
-        >
-          更新
-        </button>
-        <button
-          onClick={() => {
-            handleDeleteButtonClick(editingMemo);
-          }}
-        >
-          削除
-        </button>
-      </div>
+      {login && (
+        <div className="memo-buttons">
+          <button
+            onClick={() => {
+              handleUpdateButtonClick(editingMemo);
+            }}
+          >
+            更新
+          </button>
+          <button
+            onClick={() => {
+              handleDeleteButtonClick(editingMemo);
+            }}
+          >
+            削除
+          </button>
+        </div>
+      )}
     </>
   );
 }
